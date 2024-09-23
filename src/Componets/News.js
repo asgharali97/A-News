@@ -15,13 +15,17 @@ const News = (props) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+
   const updateNews = async () => {
-    let url = `  https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=f2e695b17ff2417b8e204d2c2975a345&pageSize=${props.pageSize}`
+    // let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=f2e695b17ff2417b8e204d2c2975a345&pageSize=${props.pageSize}`
+    let url = ` https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=f2e695b17ff2417b8e204d2c2975a345`
+
     props.setProgress(10)
     setArticles(true)
     let data = await fetch(url)
     props.setProgress(30)
     let parsedData = await data.json()
+    console.log(parsedData);
     props.setProgress(70)
     setArticles(parsedData.articles)
     setTotalResults(parsedData.totalResults)
